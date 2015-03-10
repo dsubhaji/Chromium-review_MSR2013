@@ -1,0 +1,8 @@
+create table if not exists person (owner_email VARCHAR(100), owner VARCHAR(100), PRIMARY KEY(owner_email, owner));
+#alter table person drop index ix_some_email;
+create index ix_some_email on person(owner_email);
+#alter table person drop index ix_owner;
+create index ix_owner on person(owner);
+create table if not exists review (issue INT, owner VARCHAR(100), description text, subject text, created VARCHAR(40), modified VARCHAR(40), PRIMARY KEY(issue), FOREIGN KEY(owner) REFERENCES person(owner));
+create table if not exists approval (issue INT, owner VARCHAR(100), closed VARCHAR(10), commit VARCHAR(10), PRIMARY KEY(issue,owner), FOREIGN KEY(issue) REFERENCES review(issue), FOREIGN KEY(owner) REFERENCES person(owner));
+create table if not exists comment (id INT, issue INT, sender VARCHAR(100), recipients text, text mediumtext, disapproval VARCHAR(10), date VARCHAR(45), approval VARCHAR(10), PRIMARY KEY(id), FOREIGN KEY(sender) REFERENCES person(owner_email));

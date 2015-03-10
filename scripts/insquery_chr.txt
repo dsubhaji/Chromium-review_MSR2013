@@ -1,0 +1,4 @@
+insert ignore into person(owner_email,owner) values(?,?);
+insert into review(issue,owner,description,subject,created,modified) values(?,?,?,?,?,?);
+insert ignore into approval(issue,owner,closed,commit) values(?,?,?,?);
+insert into comment(id,issue,sender,recipients,text,disapproval,date,approval) values(?,?,?,?,?,?,?,?);
