@@ -25,9 +25,9 @@ public class LogImporterFactory {
 		if (type.equalsIgnoreCase("review_log")) {
 			dbimporter = new ReviewLogImporter(conn);
 		} 
-//		  else if (type.equalsIgnoreCase("qt_log")) {
-//			dbimporter = new QtLogImporter(conn);
-//		} 
+		 if (type.equalsIgnoreCase("qt_log")) {
+			dbimporter = new QtLogImporter(conn);
+		} 
 		dbimporter.setClientName(clientName);
 		dbimporter.setDateFormat(PropertyManager.getLogDateformat(clientName));
 		try {

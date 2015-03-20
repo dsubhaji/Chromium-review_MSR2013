@@ -1,0 +1,4 @@
+insert ignore into person(email,name,_account_id) values(?,?,?);
+insert into review(change_id,owner,project,branch,subject,created,updated) values(?,?,?,?,?,?,?);
+insert ignore into approval(change_id,owner,status,mergeable) values(?,?,?,?);
+insert into messages(id,date,_revision_number,message,author) values(?,?,?,?,?);
