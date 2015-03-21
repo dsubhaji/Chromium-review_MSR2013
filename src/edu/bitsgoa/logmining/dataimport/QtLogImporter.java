@@ -88,10 +88,10 @@ public class QtLogImporter extends AbstractLogImporter{
 			jsonObject = (JSONObject) jsonParser.parse(""+message);
 			innerObj1 = (JSONObject)jsonObject.get("owner");
 			
-			insstmts[0].setInt(1,++m);
-			insstmts[0].setString(2,(String)innerObj1.get("email"));
-			insstmts[0].setString(3,(String)innerObj1.get("name"));
-			insstmts[0].setDouble(4,(Double)innerObj1.get("_account_id"));
+		//	insstmts[0].setInt(1,++m);
+			insstmts[0].setString(1,(String)innerObj1.get("email"));
+			insstmts[0].setString(2,(String)innerObj1.get("name"));
+			insstmts[0].setDouble(3,(Double)innerObj1.get("_account_id"));
 			insstmts[0].addBatch();
 
 			
@@ -101,29 +101,31 @@ public class QtLogImporter extends AbstractLogImporter{
 			while(q.hasNext()){
 				innerObj2 = (JSONObject)q.next();
 				innerObj3=(JSONObject)innerObj2.get("author");
-				insstmts[0].setInt(1,++m);
-				insstmts[0].setString(2,(String)innerObj3.get("email"));
-				insstmts[0].setString(3,(String)innerObj3.get("name"));
-				insstmts[0].setDouble(4,(Double)innerObj3.get("_account_id"));
+			//	insstmts[0].setInt(1,++m);
+				insstmts[0].setString(1,(String)innerObj3.get("email"));
+				insstmts[0].setString(2,(String)innerObj3.get("name"));
+				insstmts[0].setDouble(3,(Double)innerObj3.get("_account_id"));
 				insstmts[0].addBatch();
 			}
 
 			
-			insstmts[1].setString(1,(String)message.get("change_id"));
-			insstmts[1].setString(2,(String)innerObj1.get("name"));
-			insstmts[1].setString(3,(String)message.get("project"));         
-			insstmts[1].setString(4,(String)message.get("branch"));
-			insstmts[1].setString(5,(String)message.get("subject"));
-			insstmts[1].setString(6,(String)message.get("created"));
-			insstmts[1].setString(7,(String)message.get("updated"));
+			insstmts[1].setInt(1,m);
+			insstmts[1].setString(2,(String)message.get("change_id"));
+			insstmts[1].setString(3,(String)innerObj1.get("name"));
+			insstmts[1].setString(4,(String)message.get("project"));         
+			insstmts[1].setString(5,(String)message.get("branch"));
+			insstmts[1].setString(6,(String)message.get("subject"));
+			insstmts[1].setString(7,(String)message.get("created"));
+			insstmts[1].setString(8,(String)message.get("updated"));
 			insstmts[1].addBatch();
 
-			insstmts[2].setString(1,(String)message.get("change_id"));
-			insstmts[2].setString(2,(String)innerObj1.get("name"));
-			insstmts[2].setString(3,(String)message.get("status"));
-			insstmts[2].setString(4,""+message.get("mergeable"));
+			insstmts[2].setInt(1,m);
+			insstmts[2].setString(2,(String)message.get("change_id"));
+			insstmts[2].setString(3,(String)innerObj1.get("name"));
+			insstmts[2].setString(4,(String)message.get("status"));
+			insstmts[2].setString(5,""+message.get("mergeable"));
 			insstmts[2].addBatch();
-
+			m++;
 			// jsonObject = (JSONObject) jsonParser.parse(""+message);
 
 			
@@ -131,7 +133,8 @@ public class QtLogImporter extends AbstractLogImporter{
 			while(j.hasNext())
 			{
 			innerObj4 = (JSONObject) j.next();
-			
+			//innerObj2 = (JSONObject)q.next();
+			innerObj3=(JSONObject)innerObj4.get("author");
 			
 			insstmts[3].setString(1,(String)innerObj4.get("id"));
 			insstmts[3].setString(2,(String)innerObj4.get("date"));
