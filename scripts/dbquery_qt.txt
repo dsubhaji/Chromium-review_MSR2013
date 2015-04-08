@@ -1,6 +1,6 @@
 create table if not exists person (email VARCHAR(100), name VARCHAR(100), _account_id BIGINT, PRIMARY KEY(_account_id));
 #alter table person drop index ix_owner;	
 create index ix_owner on person(name);
-create table if not exists review (change_id VARCHAR(100), owner VARCHAR(100), project VARCHAR(100), branch VARCHAR(50), subject text, created VARCHAR(40), updated VARCHAR(40), PRIMARY KEY(change_id), FOREIGN KEY(owner) REFERENCES person(name));
-create table if not exists approval (change_id VARCHAR(100), owner VARCHAR(100), status VARCHAR(20), mergeable VARCHAR(10), PRIMARY KEY(change_id), FOREIGN KEY(change_id) REFERENCES review(change_id), FOREIGN KEY(owner) REFERENCES person(name));
-create table if not exists messages (id VARCHAR(50), date VARCHAR(40), _revision_number INT, message text, author VARCHAR(100), PRIMARY KEY(id), FOREIGN KEY(author) REFERENCES person(name));
+create table if not exists review (review_id VARCHAR(100), change_id VARCHAR(100), owner VARCHAR(100), project VARCHAR(100), branch VARCHAR(50), subject text, created VARCHAR(40), updated VARCHAR(40), PRIMARY KEY(review_id), FOREIGN KEY(owner) REFERENCES person(name));
+create table if not exists approval (review_id VARCHAR(100), owner VARCHAR(100), status VARCHAR(20), mergeable VARCHAR(10), PRIMARY KEY(review_id), FOREIGN KEY(owner) REFERENCES person(name));
+create table if not exists messages (review_id VARCHAR(100), id VARCHAR(50), date VARCHAR(40), _revision_number INT, message mediumtext, author VARCHAR(100), PRIMARY KEY(id), FOREIGN KEY(review_id) REFERENCES review(review_id), FOREIGN KEY(author) REFERENCES person(name));

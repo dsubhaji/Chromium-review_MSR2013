@@ -109,7 +109,8 @@ public class QtLogImporter extends AbstractLogImporter{
 			}
 
 			
-			insstmts[1].setInt(1,m);
+		//	insstmts[1].setInt(1,m);
+			insstmts[1].setString(1,(String)message.get("id"));
 			insstmts[1].setString(2,(String)message.get("change_id"));
 			insstmts[1].setString(3,(String)innerObj1.get("name"));
 			insstmts[1].setString(4,(String)message.get("project"));         
@@ -119,13 +120,13 @@ public class QtLogImporter extends AbstractLogImporter{
 			insstmts[1].setString(8,(String)message.get("updated"));
 			insstmts[1].addBatch();
 
-			insstmts[2].setInt(1,m);
-			insstmts[2].setString(2,(String)message.get("change_id"));
-			insstmts[2].setString(3,(String)innerObj1.get("name"));
-			insstmts[2].setString(4,(String)message.get("status"));
-			insstmts[2].setString(5,""+message.get("mergeable"));
+		//	insstmts[2].setInt(1,m);
+			insstmts[2].setString(1,(String)message.get("id"));
+			insstmts[2].setString(2,(String)innerObj1.get("name"));
+			insstmts[2].setString(3,(String)message.get("status"));
+			insstmts[2].setString(4,""+message.get("mergeable"));
 			insstmts[2].addBatch();
-			m++;
+		//	m++;
 			// jsonObject = (JSONObject) jsonParser.parse(""+message);
 
 			
@@ -136,11 +137,12 @@ public class QtLogImporter extends AbstractLogImporter{
 			//innerObj2 = (JSONObject)q.next();
 			innerObj3=(JSONObject)innerObj4.get("author");
 			
-			insstmts[3].setString(1,(String)innerObj4.get("id"));
-			insstmts[3].setString(2,(String)innerObj4.get("date"));
-			insstmts[3].setDouble(3,(Double)innerObj4.get("_revision_number"));
-			insstmts[3].setString(4,(String)innerObj4.get("message"));
-			insstmts[3].setString(5,(String)innerObj3.get("name"));
+			insstmts[3].setString(1,(String)message.get("id"));
+			insstmts[3].setString(2,(String)innerObj4.get("id"));
+			insstmts[3].setString(3,(String)innerObj4.get("date"));
+			insstmts[3].setDouble(4,(Double)innerObj4.get("_revision_number"));
+			insstmts[3].setString(5,(String)innerObj4.get("message"));
+			insstmts[3].setString(6,(String)innerObj3.get("name"));
 			insstmts[3].addBatch();
 			}
 		}
