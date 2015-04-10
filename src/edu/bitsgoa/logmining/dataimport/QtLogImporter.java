@@ -112,7 +112,7 @@ public class QtLogImporter extends AbstractLogImporter{
 		//	insstmts[1].setInt(1,m);
 			insstmts[1].setString(1,(String)message.get("id"));
 			insstmts[1].setString(2,(String)message.get("change_id"));
-			insstmts[1].setString(3,(String)innerObj1.get("name"));
+			insstmts[1].setDouble(3,(Double)innerObj1.get("_account_id"));
 			insstmts[1].setString(4,(String)message.get("project"));         
 			insstmts[1].setString(5,(String)message.get("branch"));
 			insstmts[1].setString(6,(String)message.get("subject"));
@@ -122,7 +122,7 @@ public class QtLogImporter extends AbstractLogImporter{
 
 		//	insstmts[2].setInt(1,m);
 			insstmts[2].setString(1,(String)message.get("id"));
-			insstmts[2].setString(2,(String)innerObj1.get("name"));
+			insstmts[2].setDouble(2,(Double)innerObj1.get("_account_id"));
 			insstmts[2].setString(3,(String)message.get("status"));
 			insstmts[2].setString(4,""+message.get("mergeable"));
 			insstmts[2].addBatch();
@@ -142,7 +142,7 @@ public class QtLogImporter extends AbstractLogImporter{
 			insstmts[3].setString(3,(String)innerObj4.get("date"));
 			insstmts[3].setDouble(4,(Double)innerObj4.get("_revision_number"));
 			insstmts[3].setString(5,(String)innerObj4.get("message"));
-			insstmts[3].setString(6,(String)innerObj3.get("name"));
+			insstmts[3].setDouble(6,(Double)innerObj3.get("_account_id"));
 			insstmts[3].addBatch();
 			}
 		}

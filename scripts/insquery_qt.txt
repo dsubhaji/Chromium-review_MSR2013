@@ -1,4 +1,4 @@
 insert ignore into person(email,name,_account_id) values(?,?,?);
-insert into review(review_id,change_id,owner,project,branch,subject,created,updated) values(?,?,?,?,?,?,?,?);
-insert into approval(review_id,owner,status,mergeable) values(?,?,?,?);
-insert into messages(review_id,id,date,_revision_number,message,author) values(?,?,?,?,?,?);
+insert into review(review_id,change_id,_account_id,project,branch,subject,created,updated) values(?,?,?,?,?,?,?,?);
+insert into approval(review_id,_account_id,status,mergeable) values(?,?,?,?);
+insert into messages(review_id,id,date,_revision_number,message,_account_id) values(?,?,?,?,?,?);
