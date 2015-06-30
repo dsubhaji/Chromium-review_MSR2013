@@ -1,0 +1,6 @@
+create table if not exists person (email VARCHAR(100), name VARCHAR(100), _account_id BIGINT, PRIMARY KEY(_account_id));
+#alter table person drop index ix_owner;	
+create index ix_owner on person(name);
+create table if not exists review (review_id VARCHAR(100), change_id VARCHAR(100), _account_id BIGINT, project VARCHAR(100), branch VARCHAR(50), subject text, created VARCHAR(40), updated VARCHAR(40), PRIMARY KEY(review_id), FOREIGN KEY(_account_id) REFERENCES person(_account_id));
+create table if not exists approval (review_id VARCHAR(100), _account_id BIGINT, status VARCHAR(20), mergeable VARCHAR(10), PRIMARY KEY(review_id), FOREIGN KEY(_account_id) REFERENCES person(_account_id));
+create table if not exists messages (review_id VARCHAR(100), id VARCHAR(50), date VARCHAR(40), _revision_number INT, message mediumtext, _account_id BIGINT, PRIMARY KEY(id), FOREIGN KEY(review_id) REFERENCES review(review_id), FOREIGN KEY(_account_id) REFERENCES person(_account_id));
