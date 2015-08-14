@@ -27,7 +27,13 @@ public class LogImporterFactory {
 		} 
 		 if (type.equalsIgnoreCase("qt_log")) {
 			dbimporter = new QtLogImporter(conn);
-		} 
+		}
+		 if (type.equalsIgnoreCase("os_log")) {
+				dbimporter = new OpenStackLogImporter(conn);
+			}
+		 if (type.equalsIgnoreCase("adr_log")) {
+				dbimporter = new AndroidLogImporter(conn);
+			}
 		dbimporter.setClientName(clientName);
 		dbimporter.setDateFormat(PropertyManager.getLogDateformat(clientName));
 		try {
