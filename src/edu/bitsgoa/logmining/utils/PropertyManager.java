@@ -79,6 +79,14 @@ public class PropertyManager {
 public static final String getImportQueryFileName() {
 	return _prop.getProperty("log.importqueryfile");
 }
+
+public static final String getAnalysisQueryFileName() {
+	return _prop.getProperty("log.analysisqueryfile");
+}
+
+public static final String getAnalysisTableFileName() {
+	return _prop.getProperty("log.analysistablefile");
+}
 public static final String getLogName() {
 	return _prop.getProperty("log.name");
 }
