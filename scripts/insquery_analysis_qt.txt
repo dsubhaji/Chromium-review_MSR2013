@@ -1,3 +1,5 @@
+insert into ownerwithid(owner) select distinct _account_id from review;
+insert into temp select review_id, count(*) from (select * from (select _account_id as owner,review_id from messages)A where (A.owner,A.review_id) not in (select _account_id as owner,review_id from review))B group by review_id;
 insert into t1 select A.owner,B.cnt from ownerwithid A left join (select _account_id as owner,count(*) as cnt from `review` group by _account_id)B on A.owner=B.owner;
 insert into t2 select A.owner,B.cnt  from ownerwithid A left join (SELECT _account_id as owner,count(*) as cnt FROM `approval` where status="ABANDONED" group by owner)B on A.owner=B.owner;
 insert into t3 select A.owner,B.cnt  from ownerwithid A left join (SELECT _account_id as owner,count(*) as cnt FROM `approval` where status="MERGED" group by owner)B on A.owner=B.owner;
